@@ -4,10 +4,9 @@
 
 def pascal_triangle(n):
     """
-        pascal_triangle: a function that compute pascal triangle
-        n: is a positive integer value to generate output
-        
-        Return: an empty list if an n is less than 0 or equal 0.
+    pascal_triangle: a function that compute pascal triangle
+    n: is a positive integer value to generate output
+    Return: an empty list if an n is less than 0 or equal 0.
     """
     pascal = []
     if n <= 0:
@@ -19,4 +18,3 @@ def pascal_triangle(n):
             tx_list.append(num)
         pascal.append(tx_list)
     return pascal
-    
