@@ -8,6 +8,7 @@ def pascal_triangle(n):
     n: is a positive integer value to generate output
     Return: an empty list if an n is less than 0 or equal 0.
     """
+    pascal = []
     if n <= 0:
         return pascal
     pascal = [[1]]
