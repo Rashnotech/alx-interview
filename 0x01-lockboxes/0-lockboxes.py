@@ -11,7 +11,18 @@ def canUnlockAll(boxes):
     Return:
         bool: True if all lockboxes can be opened, False otherwise.
     """
-    size = len(boxes)
+    num_boxes = len(boxes)
+    unlocked_boxes = [False] * num_boxes
+    unlocked_boxes[0] = True
+    keys = set(boxes[0])
+
+    def explore(box_index):
+        for key in boxes[box_index]:
+            if key < num_boxes and not unlocked_boxes[key]:
+                unlocked_boxes[key] = True
+                keys.update(boxes[key])
+                explore(key)
+    """
     props = {0: 'open'}
     for idx in range(size):
         if props.get(idx) == 'open':
@@ -20,4 +31,6 @@ def canUnlockAll(boxes):
             for key in keys:
                 if key not in props:
                     props[key] = 'open'
-    return all(box in props for box in range(size))
+    """
+    explore(0)
+    return all(unlocked_boxes)
