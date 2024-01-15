@@ -11,6 +11,9 @@ def canUnlockAll(boxes):
     Return:
         bool: True if all lockboxes can be opened, False otherwise.
     """
+    if not boxes or not boxes[0]:
+        return False
+
     num_boxes = len(boxes)
     unlocked_boxes = [False] * num_boxes
     unlocked_boxes[0] = True
@@ -22,15 +25,5 @@ def canUnlockAll(boxes):
                 unlocked_boxes[key] = True
                 keys.update(boxes[key])
                 explore(key)
-    """
-    props = {0: 'open'}
-    for idx in range(size):
-        if props.get(idx) == 'open':
-            print(f'check is index is open {idx}')
-            keys = boxes[idx]
-            for key in keys:
-                if key not in props:
-                    props[key] = 'open'
-    """
     explore(0)
     return all(unlocked_boxes)
