@@ -21,9 +21,6 @@ def signal_handler(signal, framer):
     print_statistics()
     sys.exit(0)
 
-
-signal.signal(signal.SIGINT, signal_handler)
-
 try:
     for line in sys.stdin:
         log_info = "".join(line)
