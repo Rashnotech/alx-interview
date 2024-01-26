@@ -26,7 +26,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 try:
     for line in sys.stdin:
-        log_info = "".join(line) 
+        log_info = "".join(line)
         logs = log_info.split()
         if len(logs) < 7:
             continue
