@@ -16,22 +16,18 @@ def print_statistics():
         if status_code[code] > 0:
             print('{}: {}'.format(code, status_code[code]))
 
-
-def signal_handler(signal, framer):
-    print_statistics()
-    sys.exit(0)
-
 try:
     for line in sys.stdin:
         log_info = "".join(line)
         logs = log_info.split()
-        if len(logs) < 7:
+        if len(logs) != 9:
             continue
         code = int(logs[-2])
         file_size = int(logs[-1])
 
         total_size += file_size
-        status_code[code] += 1
+        if code in status_code:
+            status_code[code] += 1
         line_count += 1
 
         if line_count % 10 == 0:
