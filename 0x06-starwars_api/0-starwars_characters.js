@@ -5,40 +5,26 @@
 const args = require('process').argv
 const request = require('request')
 
+const id = args[2]
+const url = `https://swapi-api.alx-tools.com/api/films/${id}`;
 
 const fetchApi = (id) => {
-  const url = `https://swapi-api.alx-tools.com/api/films/${id}`;
-
   return new Promise((resolve, reject) => {
-    request(url)
-      .then(response => {
-        return response.json();
-      })
-      .then(filmData => {
-        const characterURLs = filmData.characters;
-        const characterNamesPromises = characterURLs.map(characterURL => {
-          return fetch(characterURL)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Failed to fetch character');
-              }
-              return response.json();
-            })
-            .then(characterData => characterData.name);
-        });
+    request(url, (error, response, body) => {
+      if (response.statusCode === 200) {
+        const characters = JSON.parse(body).characters;
+	resolve(characters)
+      } else {
+        reject(response);
+      }
+    })
+  }
+}
 
-        return Promise.all(characterNamesPromises);
-      })
-      .then(characterNames => {
-        characterNames.forEach(characterName => console.log(characterName));
-        resolve();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        reject(error);
-      });
-  });
-};
-
-
-fetchApi(args[2]);
+request(url, (error, response, body) => {
+  const characters = JSON.parse(body).characters;
+  const promises = characters.map(character => fetchApi(character));
+  Promise.all(promises)
+  .then(results = results.forEach(result, console.log(result))
+  .catch(error => console.log(error));
+});
