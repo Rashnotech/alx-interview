@@ -8,6 +8,11 @@ def isWinner(x: int, nums: list) -> str:
         x: is the number of rounds
         nums: is an array of n
     """
+    if x <= 0:
+        return None
+    if len(nums) == 0:
+        return None
+
     def prime(num: int) -> list:
         """
         A function that generate a prime number
@@ -35,7 +40,4 @@ def isWinner(x: int, nums: list) -> str:
             player1 += 1
     if player2 > player1:
         return 'Ben'
-    if player1 > player2:
-        return 'Maria'
-    else:
-        return None
+    return 'Maria
