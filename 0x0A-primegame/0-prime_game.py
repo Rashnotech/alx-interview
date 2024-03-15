@@ -8,7 +8,7 @@ def isWinner(x: int, nums: list) -> str:
         x: is the number of rounds
         nums: is an array of n
     """
-    if x == 0 or len(nums) == 0:
+    if x <= 0 or len(nums) == 0:
         return None
 
     def prime(num: int) -> list:
