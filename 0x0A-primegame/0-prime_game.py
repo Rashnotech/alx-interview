@@ -38,6 +38,8 @@ def isWinner(x: int, nums: list) -> str:
             player1 += 1
     if player2 > player1:
         return 'Ben'
+    """
     if player1 > player2:
         return 'Maria'
-    return None
+    """
+    return 'Maria'
